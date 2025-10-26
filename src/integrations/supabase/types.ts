@@ -14,7 +14,278 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      complaints: {
+        Row: {
+          assigned_to: string | null
+          complainant_contact: string | null
+          complainant_name: string
+          complaint_type: string
+          created_at: string | null
+          description: string
+          filed_date: string | null
+          id: string
+          remarks: string | null
+          resolved_date: string | null
+          status: Database["public"]["Enums"]["complaint_status"] | null
+          updated_at: string | null
+        }
+        Insert: {
+          assigned_to?: string | null
+          complainant_contact?: string | null
+          complainant_name: string
+          complaint_type: string
+          created_at?: string | null
+          description: string
+          filed_date?: string | null
+          id?: string
+          remarks?: string | null
+          resolved_date?: string | null
+          status?: Database["public"]["Enums"]["complaint_status"] | null
+          updated_at?: string | null
+        }
+        Update: {
+          assigned_to?: string | null
+          complainant_contact?: string | null
+          complainant_name?: string
+          complaint_type?: string
+          created_at?: string | null
+          description?: string
+          filed_date?: string | null
+          id?: string
+          remarks?: string | null
+          resolved_date?: string | null
+          status?: Database["public"]["Enums"]["complaint_status"] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          created_at: string | null
+          document_number: string
+          document_type: Database["public"]["Enums"]["document_type"]
+          id: string
+          issued_by: string | null
+          issued_date: string | null
+          purpose: string
+          resident_id: string | null
+          status: string | null
+          updated_at: string | null
+          valid_until: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          document_number: string
+          document_type: Database["public"]["Enums"]["document_type"]
+          id?: string
+          issued_by?: string | null
+          issued_date?: string | null
+          purpose: string
+          resident_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+          valid_until?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          document_number?: string
+          document_type?: Database["public"]["Enums"]["document_type"]
+          id?: string
+          issued_by?: string | null
+          issued_date?: string | null
+          purpose?: string
+          resident_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+          valid_until?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_resident_id_fkey"
+            columns: ["resident_id"]
+            isOneToOne: false
+            referencedRelation: "residents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          event_date: string
+          event_time: string | null
+          id: string
+          location: string
+          max_participants: number | null
+          organizer: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          event_date: string
+          event_time?: string | null
+          id?: string
+          location: string
+          max_participants?: number | null
+          organizer?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          event_date?: string
+          event_time?: string | null
+          id?: string
+          location?: string
+          max_participants?: number | null
+          organizer?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      officials: {
+        Row: {
+          contact_number: string | null
+          created_at: string | null
+          email: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          photo_url: string | null
+          position: string
+          term_end: string | null
+          term_start: string
+          updated_at: string | null
+        }
+        Insert: {
+          contact_number?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          photo_url?: string | null
+          position: string
+          term_end?: string | null
+          term_start: string
+          updated_at?: string | null
+        }
+        Update: {
+          contact_number?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          photo_url?: string | null
+          position?: string
+          term_end?: string | null
+          term_start?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string
+          id: string
+          role: Database["public"]["Enums"]["user_role"] | null
+          updated_at: string | null
+          username: string
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          full_name: string
+          id: string
+          role?: Database["public"]["Enums"]["user_role"] | null
+          updated_at?: string | null
+          username: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          role?: Database["public"]["Enums"]["user_role"] | null
+          updated_at?: string | null
+          username?: string
+        }
+        Relationships: []
+      }
+      residents: {
+        Row: {
+          address: string
+          civil_status: string
+          contact_number: string | null
+          created_at: string | null
+          created_by: string | null
+          date_of_birth: string
+          email: string | null
+          first_name: string
+          gender: string
+          id: string
+          last_name: string
+          middle_name: string | null
+          purok: string | null
+          pwd_status: boolean | null
+          senior_citizen: boolean | null
+          suffix: string | null
+          updated_at: string | null
+          voter_status: boolean | null
+        }
+        Insert: {
+          address: string
+          civil_status: string
+          contact_number?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          date_of_birth: string
+          email?: string | null
+          first_name: string
+          gender: string
+          id?: string
+          last_name: string
+          middle_name?: string | null
+          purok?: string | null
+          pwd_status?: boolean | null
+          senior_citizen?: boolean | null
+          suffix?: string | null
+          updated_at?: string | null
+          voter_status?: boolean | null
+        }
+        Update: {
+          address?: string
+          civil_status?: string
+          contact_number?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          date_of_birth?: string
+          email?: string | null
+          first_name?: string
+          gender?: string
+          id?: string
+          last_name?: string
+          middle_name?: string | null
+          purok?: string | null
+          pwd_status?: boolean | null
+          senior_citizen?: boolean | null
+          suffix?: string | null
+          updated_at?: string | null
+          voter_status?: boolean | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +294,9 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      complaint_status: "pending" | "in_progress" | "resolved" | "closed"
+      document_type: "clearance" | "certificate" | "permit" | "id"
+      user_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +423,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      complaint_status: ["pending", "in_progress", "resolved", "closed"],
+      document_type: ["clearance", "certificate", "permit", "id"],
+      user_role: ["admin", "user"],
+    },
   },
 } as const
